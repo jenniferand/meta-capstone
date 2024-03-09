@@ -2,6 +2,7 @@ function Footer () {
     return (
       <footer>
         <nav className='footer-nav'>
+          <h1>Navigation</h1>
           <ul>
             <li>
               <a href="/home">Home</a>
