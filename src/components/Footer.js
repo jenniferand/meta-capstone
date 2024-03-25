@@ -1,6 +1,10 @@
-function Footer () {
-    return (
-      <footer>
+import footerLogo from '../assets/footerlogo.png';
+
+function Footer() {
+  return (
+    <footer className="footer">
+      <img src={footerLogo} alt="Footer Logo" class="footer-logo" />
+      <div class="footer-text-content">
         <nav className='footer-nav'>
           <h1>Navigation</h1>
           <ul>
@@ -22,20 +26,29 @@ function Footer () {
           </ul>
         </nav>
         <section className="contact-info">
-            <h1>Contact</h1>
-            <p>Adrian</p>
-            <p>Little Lemon</p>
-            <p>926 Dunlop Ave</p>
-            <p>+17088488155</p>
+          <h1>Contact</h1>
+          <p>Adrian</p>
+          <p>Little Lemon</p>
+          <p>926 Dunlop Ave</p>
+          <p>+17088488155</p>
         </section>
         <section className="social-links">
-            <h1>Social Media</h1>
-            <a href="https://www.facebook.com">Facebook</a>
-            <a href="https://www.instagram.com">Instagram</a>
-            <a href="https://www.twitter.com">X</a>
+          <h1>Social Media</h1>
+          <ul>
+            <li>
+              <a href="https://www.facebook.com">Facebook</a>
+              </li>
+            <li>
+              <a href="https://www.instagram.com">Instagram</a>
+              </li>
+            <li>
+              <a href="https://www.twitter.com">X</a>
+              </li>
+          </ul>
         </section>
-      </footer>
-    );
+      </div>
+    </footer>
+  );
 }
 
 export default Footer;

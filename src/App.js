@@ -1,17 +1,16 @@
 import './App.css';
-import Header from './components/Header';
-import Main from './components/Main';
-import Footer from './components/Footer';
-import Hero from './components/Hero'
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
+import HomePage from './components/Homepage';
+import BookingPage from './components/BookingPage';
 
 function App() {
   return (
-    <div className="grid-container">
-      <Header className="header"/>
-      <Hero/>
-      <Main/>
-      <Footer/>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />}></Route>
+        <Route path="/booking" element={<BookingPage />}></Route>
+      </Routes>
+    </Router>
   );
 }
 
