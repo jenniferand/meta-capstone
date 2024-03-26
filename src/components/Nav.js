@@ -5,10 +5,10 @@ function Nav() {
       <nav className="main-nav">
         <ul>
           <li>
-            <Link to="/home">Home</Link>
+            <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/reservations">Reservations</Link>
+            <Link to="/booking">Reservations</Link>
           </li>
           <li>
             <Link to="#" className="disabled">About</Link>

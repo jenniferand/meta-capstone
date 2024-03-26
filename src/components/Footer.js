@@ -12,7 +12,7 @@ function Footer() {
               <a href="/home">Home</a>
             </li>
             <li>
-              <a href="/reservations">Reservations</a>
+              <a href="/booking">Reservations</a>
             </li>
             <li>
               <a href="/about">About</a>
