@@ -3,8 +3,8 @@ import footerLogo from '../assets/footerlogo.png';
 function Footer() {
   return (
     <footer className="footer">
-      <img src={footerLogo} alt="Footer Logo" class="footer-logo" />
-      <div class="footer-text-content">
+      <img src={footerLogo} alt="Footer Logo" className="footer-logo" />
+      <div className="footer-text-content">
         <nav className='footer-nav'>
           <h1>Navigation</h1>
           <ul>
