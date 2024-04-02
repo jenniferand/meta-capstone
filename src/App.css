@@ -50,6 +50,11 @@ ul a {
   font-size: 1rem;
 }
 
+.button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
 /* Header */
 
 .header {
@@ -377,6 +382,7 @@ ul a {
   #mario-and-adrian-image {
     margin-top: -4rem;
     margin-left: 12rem;
+    margin: -4rem 6rem 0 6rem;
     border: white 1px solid;
   }
 }
@@ -416,6 +422,7 @@ label {
 
 .input {
   padding: 0.7rem;
+  font-family: "Karla", sans-serif;
   font-size: 1rem;
   border: 0.1rem solid #ccc;
   border-radius: 0.5rem;
