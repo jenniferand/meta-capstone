@@ -7,8 +7,8 @@ function Specials() {
     return (
         <div className="specials-grid">
             <div className="specials-header">
-                <h1>Specials</h1>
-                <button className="button">Online Menu</button>
+                <h1 className="page-header">Specials</h1>
+                <button className="button" id="button-small">Online Menu</button>
             </div>
             <div className="specials-main">
                 <SpecialsCard

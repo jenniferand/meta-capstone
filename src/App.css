@@ -23,6 +23,33 @@ ul a {
   text-decoration: none;
 }
 
+.page-header {
+  font-size: 3rem;
+  font-family: "Markazi Text", serif;
+  font-weight: 100;
+  color: #495e57;
+}
+
+.button {
+  background-color: #f4ce14;
+  color: #495e57;
+  border: none;
+  font-family: "Karla", sans-serif;
+  font-weight: 700;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+}
+
+#button-small {
+  width: 10rem;
+  height: 2rem;
+}
+
+#button-large {
+  height: 3rem;
+  font-size: 1rem;
+}
+
 /* Header */
 
 .header {
@@ -112,14 +139,14 @@ ul a {
 }
 
 @media (max-width: 820px) {
-.mobile-only {
-  display: block;
-  margin-right: 1rem;
-}
+  .mobile-only {
+    display: block;
+    margin-right: 1rem;
+  }
 
-.desktop-only {
-  display: none;
-}
+  .desktop-only {
+    display: none;
+  }
 }
 
 @media (min-width: 821px) {
@@ -131,19 +158,6 @@ ul a {
     display: block;
     margin-right: 1rem;
   }
-}
-
-.button {
-  background-color: #f4ce14;
-  color: #495e57;
-  border: none;
-  font-family: "Karla", sans-serif;
-  font-weight: 700;
-  width: 10rem;
-  height: 2rem;
-  border-radius: 0.5rem;
-  margin-top: 1rem;
-
 }
 
 /* Footer */
@@ -207,7 +221,7 @@ ul a {
 }
 
 .specials-card {
-  background-color: #EDEFEE;
+  background-color: #edefee;
   border-radius: 8px;
   padding-bottom: 1rem;
 }
@@ -227,7 +241,7 @@ ul a {
 
 .specials-card-header span {
   font-family: "Karla", sans-serif;
-  color: #EE9972;
+  color: #ee9972;
   font-weight: 800;
   font-size: 1.1rem;
 }
@@ -270,7 +284,7 @@ ul a {
 }
 
 .testimonials-card {
-  background-color: #EDEFEE;
+  background-color: #edefee;
   border-radius: 8px;
   padding-bottom: 1rem;
 }
@@ -280,7 +294,6 @@ ul a {
   justify-content: left;
   padding: 1rem;
   gap: 2rem;
-
 }
 
 .testimonials-card-header h3 {
@@ -358,12 +371,67 @@ ul a {
     margin-right: 1rem;
     gap: 1rem;
   }
-  }
+}
 
-  @media (max-width: 820px) {
-    #mario-and-adrian-image {
-      margin-top: -4rem;
-      margin-left: 12rem;
-      border: white 1px solid;
-    }
+@media (max-width: 820px) {
+  #mario-and-adrian-image {
+    margin-top: -4rem;
+    margin-left: 12rem;
+    border: white 1px solid;
   }
+}
+
+/* Reservation Form */
+
+.booking-grid {
+  display: grid;
+  justify-content: center;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+
+.form {
+  display: grid;
+}
+
+.optional-group {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.optional-group .input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  color: #333333;
+  font-size: 1rem;
+  font-family: "Karla", sans-serif;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.input {
+  padding: 0.7rem;
+  font-size: 1rem;
+  border: 0.1rem solid #ccc;
+  border-radius: 0.5rem;
+  background-color: #fff;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  appearance: none;
+  margin-bottom: 1.2rem;
+}
+
+option:checked {
+  background-color: #e6f7ff;
+}
+
+select:focus {
+  outline: none;
+  border-color: #007bff;
+}

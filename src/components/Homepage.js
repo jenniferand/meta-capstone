@@ -1,7 +1,9 @@
 import Header from './Header';
 import Footer from './Footer';
 import Hero from './Hero';
-import Main from './Main';
+import Testimonials from './Testimonials';
+import Specials from './Specials';
+import AboutUs from './AboutUsHome';
 
 function HomePage() {
     return (
@@ -11,7 +13,9 @@ function HomePage() {
                 buttonText="Book a Table"
                 buttonLink="/booking"
             />
-            <Main/>
+            <Specials />
+            <Testimonials />
+            <AboutUs />
             <Footer />
         </div>
     );

@@ -12,7 +12,7 @@ function Hero({ buttonText, buttonLink }) {
                 <h2>Chicago</h2>
                 <p>We are a family owned Mediterranean restaurant, focused on traditional recipes served with a modern twist.</p>
                 <Link to={buttonLink}>
-                    <button className="button">{buttonText}</button>
+                    <button className="button" id="button-small">{buttonText}</button>
                 </Link>
             </div>
             <div id="hero-">
