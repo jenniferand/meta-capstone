@@ -4,7 +4,7 @@ import { DateTimePicker } from "@mui/x-date-pickers";
 import { useState } from 'react';
 import { validateEmail, validateDate, defineTime } from '../utils';
 
-function BookingForm() {
+function BookingForm({ availableTimes, onTimeSlotUpdate }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState({ value: "", isTouched: false});
   const [guests, setGuests] = useState(2);
