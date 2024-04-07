@@ -1,32 +1,36 @@
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFnsV3'
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DateTimePicker } from "@mui/x-date-pickers";
 import { useState } from 'react';
 import { validateEmail, validateDate, defineTime } from '../utils';
+import { convertDatetoTimeString } from '../utils';
 
-function BookingForm({ availableTimes, onTimeSlotUpdate }) {
+function BookingForm({ availableTimes, onTimeSlotUpdate, onSubmit }) {
   const [name, setName] = useState("");
-  const [email, setEmail] = useState({ value: "", isTouched: false});
+  const [email, setEmail] = useState({ value: "", isTouched: false });
   const [guests, setGuests] = useState(2);
-  const [datetime, setDatetime] = useState({ value: null, isTouched: false});
+  const [date, setDate] = useState({ value: null, isTouched: false });
+  const [time, setTime] = useState({ value: availableTimes[0], isTouched: false });
   const [tablePref, setTablePref] = useState("Inside");
   const [occasion, setOccasion] = useState("None");
   const [comments, setComments] = useState("");
+
+  const handleRemoveTimeSlot = (timeToRemove) => {
+    onTimeSlotUpdate(timeToRemove);
+  };
 
   const getIsFormValid = () => {
     return (
       name &&
       validateEmail(email.value) &&
-      validateDate(datetime.value) &&
+      // validateDate(datetime.value) &&
       guests
     );
   }
 
   const clearForm = () => {
     setName("");
-    setEmail({ value: "", isTouched: false});
+    setEmail({ value: "", isTouched: false });
     setGuests(2);
-    setDatetime({ value: null, isTouched: false});
+    setDate({ value: null, isTouched: false });
+    setTime({ value: availableTimes[0], isTouched: false });
     setTablePref("Inside");
     setOccasion("None");
     setComments("");
@@ -35,12 +39,20 @@ function BookingForm({ availableTimes, onTimeSlotUpdate }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     clearForm();
+    handleRemoveTimeSlot(time.value);
+
+    const bookingDetails = {
+      name,
+      tablePref,
+      date: date.value,
+      time: time.value,
+      guests,
+      email: email.value
+    };
+    
+    onSubmit(bookingDetails);
     console.log('Form submitted!')
-  }
-
-  const minTime = defineTime(11);
-
-  const maxTime = defineTime(21);
+  };
 
   return (
     <div className="booking-grid">
@@ -56,7 +68,7 @@ function BookingForm({ availableTimes, onTimeSlotUpdate }) {
           onChange={e => setName(e.target.value)}
         />
         <label htmlFor="email">Email</label>
-        {email.isTouched && !validateEmail(email.value) ? (<p style={{color: "red"}}>Please enter a valid email address.</p>) : null}
+        {email.isTouched && !validateEmail(email.value) ? (<p style={{ color: "red" }}>Please enter a valid email address.</p>) : null}
         <input
           className="input"
           type="email"
@@ -77,25 +89,28 @@ function BookingForm({ availableTimes, onTimeSlotUpdate }) {
           value={guests}
           onChange={e => setGuests(e.target.value)}
         />
-        <label htmlFor="res-datetime">Date and Time</label>
-        {datetime.isTouched && !validateDate(datetime.value) ? (<p style={{color: "red"}}>The selected slot is in the past.</p>) : null}
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <DateTimePicker
-            id="res-datetime"
-            label=""
-            ampm={false}
-            views={['year', 'month', 'day', 'hours', 'minutes']}
-            minDate={new Date()}
-            minTime={minTime}
-            maxTime={maxTime}
-            timeSteps={{ minutes: 30 }}
-            skipDisabled={true}
-            sx={{ marginBottom: '1rem' }}
-            required={true}
-            value={datetime.value}
-            onChange={e => setDatetime({ ...datetime, value: e, isTouched: true})}
-          />
-        </LocalizationProvider>
+        <label htmlFor="res-date">Select a Date</label>
+        <input
+          className="input"
+          type="date"
+          id="res-date"
+          required={true}
+          value={date.value}
+          onChange={e => setDate({ ...date, value: e.target.value })}
+        />
+        <label htmlFor="res-time">Select a Time</label>
+        <select
+          className="input"
+          id="res-time"
+          required={true}
+          value={time.value}
+          onChange={e => setTime({ ...time, value: e.target.value })}
+        >
+          {availableTimes.map((time, index) => (
+            <option key={index} value={time}>{time}</option>
+          ))}
+        </select>
+        {/* {date.isTouched && time.isTouched && !validateDate(datetime.value) ? (<p style={{ color: "red" }}>The selected slot is in the past.</p>) : null} */}
         <div className="optional-group">
           <div className="input-container">
             <label htmlFor="table-pref">Table Preference</label>

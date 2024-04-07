@@ -6,10 +6,10 @@ export const validateEmail = (email) => {
       );
   };
 
-export const validateDate = (date) => {
-    const now = new Date();
-    return date > now ? true : false;
-};
+// export const validateDate = (date, time) => {
+//     const now = new Date();
+//     return date > now ? true : false;
+// };
 
 export const defineTime = (hour) => {
     const time = new Date();

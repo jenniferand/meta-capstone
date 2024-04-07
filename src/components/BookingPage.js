@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useState, useReducer } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import Hero from "./Hero";
 import BookingForm from "./BookingForm";
 
 function BookingPage() {
-  const [availableTimes, setAvailableTimes] = useState([
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [bookingDetails, setBookingDetails] = useState({});
+
+  const initialState = [
     "11:00",
     "11:30",
     "12:00",
@@ -26,17 +29,31 @@ function BookingPage() {
     "19:30",
     "20:00",
     "20:30",
-    "21:00"
-  ]);
-  const [showConfirmation, setShowConfirmation] = useState(false);
+    "21:00",
+  ];
 
-  const handleTimeSlotUpdate = (updatedTimes) => {
-    setAvailableTimes(updatedTimes);
+  const availableTimesReducer = (state, action) => {
+    switch (action.type) {
+      case "remove":
+        return state.filter((time) => time !== action.payload);
+      default:
+        return state;
+    }
+  }
+
+  const [availableTimes, dispatch] = useReducer(availableTimesReducer, initialState);
+
+  const updateTimes = (selectedDate) => {
+    dispatch({ type: "remove", payload: selectedDate });
   };
 
-  const handleConfirmation = () => {
-    // preventDefault();
+  const handleConfirmation = (bookingDetails) => {
+    setBookingDetails(bookingDetails);
     setShowConfirmation(true);
+  };
+
+  const newReservation = () => {
+    setShowConfirmation(false);
   };
 
   return (
@@ -45,20 +62,23 @@ function BookingPage() {
       <Hero buttonText="Home" buttonLink="/" />
       {!showConfirmation ? (
         <div>
-          <BookingForm availableTimes={availableTimes} onTimeSlotUpdate={handleTimeSlotUpdate}/>
+          <BookingForm availableTimes={availableTimes} onTimeSlotUpdate={updateTimes} onSubmit={handleConfirmation} />
         </div>
       ) : (
-        <div>
-          <h2>Reservation Confirmed!</h2>
-          <p>
-            Thanks for choosing to dine with us at Little Lemon! Your [Table
-            preference] table is confirmed for [Date] at [Time] for [Number of
-            Diners] diners. Additional comments and occasions will be reviewed
-            by our front of house.
-          </p>
-          <p>A confirmation email has been sent to [Email].</p>
-          <p>We look forward to welcoming you!</p>
-        </div>
+        <div className="booking-confirmation">
+          <div>
+            <h2 className="page-header">Reservation Confirmed!</h2>
+            <p>
+              Thanks, {bookingDetails.name}, for choosing to dine with us at Little Lemon! Your {bookingDetails.tablePref} table is confirmed for {bookingDetails.date} at {bookingDetails.time} for {bookingDetails.guests} diners. Additional comments and occasions will be reviewed by our front of house.
+            </p>
+            <p>A confirmation email has been sent to {bookingDetails.email}.</p>
+            <p>We look forward to welcoming you!</p>
+          </div>
+          <button className="button" id="button-large">Amend</button>
+          <button className="button" id="button-large">Cancel</button>
+          <button className="button" id="button-large" onClick={newReservation}>New Reservation</button>
+          <button className="button" id="button-large">Browse our Menu</button>
+          </div>
       )}
       <Footer />
     </div>

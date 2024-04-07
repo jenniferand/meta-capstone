@@ -48,6 +48,7 @@ ul a {
 #button-large {
   height: 3rem;
   font-size: 1rem;
+  width: 25rem;
 }
 
 .button:disabled {
@@ -441,4 +442,26 @@ option:checked {
 select:focus {
   outline: none;
   border-color: #007bff;
+}
+
+/* Reservation Confirmation */
+
+.booking-confirmation {
+  display: grid;
+  justify-content: center;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  text-align: center;
+  justify-items: center;
+}
+
+.booking-confirmation p {
+  font-family: "Karla", sans-serif;
+  color: #333333;
+  font-size: 1rem;
+}
+
+.booking-confirmation input {
+  text-align: center;
+  justify-content: center;
 }
