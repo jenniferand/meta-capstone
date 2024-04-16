@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import { validateEmail, validateDate, defineTime } from '../utils';
-import { convertDatetoTimeString } from '../utils';
+import { validateEmail } from '../utils';
 
 function BookingForm({ availableTimes, onTimeSlotUpdate, onSubmit }) {
   const [name, setName] = useState("");
@@ -20,7 +19,7 @@ function BookingForm({ availableTimes, onTimeSlotUpdate, onSubmit }) {
     return (
       name &&
       validateEmail(email.value) &&
-      // validateDate(datetime.value) &&
+      date.value &&
       guests
     );
   }
@@ -49,9 +48,8 @@ function BookingForm({ availableTimes, onTimeSlotUpdate, onSubmit }) {
       guests,
       email: email.value
     };
-    
+
     onSubmit(bookingDetails);
-    console.log('Form submitted!')
   };
 
   return (
@@ -66,6 +64,7 @@ function BookingForm({ availableTimes, onTimeSlotUpdate, onSubmit }) {
           required={true}
           value={name}
           onChange={e => setName(e.target.value)}
+          aria-required="true"
         />
         <label htmlFor="email">Email</label>
         {email.isTouched && !validateEmail(email.value) ? (<p style={{ color: "red" }}>Please enter a valid email address.</p>) : null}
@@ -77,6 +76,7 @@ function BookingForm({ availableTimes, onTimeSlotUpdate, onSubmit }) {
           value={email.value}
           onChange={e => setEmail({ ...email, value: e.target.value })}
           onBlur={() => setEmail({ ...email, isTouched: true })}
+          aria-required="true"
         />
         <label htmlFor="guests">Number of Guests</label>
         <input
@@ -88,6 +88,7 @@ function BookingForm({ availableTimes, onTimeSlotUpdate, onSubmit }) {
           id="guests"
           value={guests}
           onChange={e => setGuests(e.target.value)}
+          aria-required="true"
         />
         <label htmlFor="res-date">Select a Date</label>
         <input
@@ -97,6 +98,7 @@ function BookingForm({ availableTimes, onTimeSlotUpdate, onSubmit }) {
           required={true}
           value={date.value}
           onChange={e => setDate({ ...date, value: e.target.value })}
+          aria-required="true"
         />
         <label htmlFor="res-time">Select a Time</label>
         <select
@@ -105,12 +107,12 @@ function BookingForm({ availableTimes, onTimeSlotUpdate, onSubmit }) {
           required={true}
           value={time.value}
           onChange={e => setTime({ ...time, value: e.target.value })}
+          aria-required="true"
         >
           {availableTimes.map((time, index) => (
             <option key={index} value={time}>{time}</option>
           ))}
         </select>
-        {/* {date.isTouched && time.isTouched && !validateDate(datetime.value) ? (<p style={{ color: "red" }}>The selected slot is in the past.</p>) : null} */}
         <div className="optional-group">
           <div className="input-container">
             <label htmlFor="table-pref">Table Preference</label>
